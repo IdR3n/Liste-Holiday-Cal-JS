@@ -21,43 +21,49 @@
     https://cdn.jsdelivr.net/npm/fullcalendar@6.1.7/index.global.min.js
     "></script>
     <script>
-// méthode axios/await
+        // méthode axios/await
         document.addEventListener('DOMContentLoaded', async function getFetes() {
-            try{
+            try {
                 const res = await axios.get('https://date.nager.at/api/v3/publicholidays/2023/CH');
-        console.log(res);
-        const fetesList = res.data
-        const holElement = document.getElementById('calendar');
+                console.log(res);
+                const fetesList = res.data
+                const holElement = document.getElementById('calendar');
 
-        for (let fetes of fetesList) {
-            const fetesEl = document.createElement('div')
-            fetesEl.classList.add('col')
-      fetesEl.addEventListener('click', function(){
-        alert(fetes.date)
-      })
-      holElement.appendChild(fetesEl)
+                for (let fetes of fetesList) {
+                    const fetesEl = document.createElement('div')
+                    fetesEl.classList.add('col')
+                    fetesEl.addEventListener('click', function () {
+                        alert(fetes.date)
+                    })
+                    holElement.appendChild(fetesEl)
+                }
+
+            } catch (e) {
+                throw e;
             }
-            
-        }catch (e) {
-        throw e;
-    } 
-    
-    
-          const calendarEl = document.getElementById('calendar');
-          const calendar = new FullCalendar.Calendar(calendarEl, {
-            initialView: 'dayGridMonth'
-          });
-          calendar.render();
+
+
+            const calendarEl = document.getElementById('calendar');
+            const calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+                events: [{
+                    start:'2023-05-19',
+                    title:'WTF is this bullshit :]'
+                }]
+            });
+            calendar.render();
         });
-  
-      </script>
+
+    </script>
     <script type="module" src="main.js"></script>
 </head>
+
 <body>
     <div class="container">
-            <div id="calendar"></div>
+        <div id="calendar"></div>
 
-        </div>
+    </div>
     </div>
 </body>
+
 </html>
