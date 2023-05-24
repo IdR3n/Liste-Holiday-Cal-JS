@@ -25,7 +25,7 @@
         document.addEventListener('DOMContentLoaded', async function getFetes() {
             try {
                 const res = await axios.get('https://date.nager.at/api/v3/publicholidays/2023/CH');
-                console.log(res);
+                console.log(res.data);
                 const fetesList = res.data
                 const holElement = document.getElementById('calendar');
 
@@ -38,17 +38,24 @@
                     holElement.appendChild(fetesEl)
                 }
 
+                let result = fetesList.map((fete) => {
+                console.log(fete)
+                return fete
+            })
+
+            console.log(result)
+
             } catch (e) {
                 throw e;
             }
-
-
+            
+// utiliser array.prototype.map() pour change le nom de data (date et name) par (start et title).
             const calendarEl = document.getElementById('calendar');
             const calendar = new FullCalendar.Calendar(calendarEl, {
                 initialView: 'dayGridMonth',
                 events: [{
                     start:'2023-05-19',
-                    title:'WTF is this bullshit :]'
+                    title:'Ciao'
                 }]
             });
             calendar.render();
